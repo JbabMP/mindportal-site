@@ -461,6 +461,65 @@
             line-height: 1.6;
         }
 
+        /* Recognition Gallery - Premium Carousel */
+        .recognition-gallery {
+            margin-top: 80px;
+            position: relative;
+            padding: 80px 0;
+        }
+
+        .gallery-track {
+            display: flex;
+            gap: 40px;
+            animation: galleryScroll 40s linear infinite;
+        }
+
+        @keyframes galleryScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .gallery-item {
+            min-width: 400px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            border-color: var(--accent);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.1) 0%, rgba(102, 126, 234, 0.1) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: var(--gray-500);
+        }
+
+        .gallery-content {
+            padding: 32px;
+        }
+
+        .gallery-content h4 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .gallery-content p {
+            color: var(--gray-400);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+
         /* Award Section */
         .award-section {
             padding: 120px 0;
@@ -685,6 +744,68 @@
     </a>
   </div>
     </div>
+
+    <div class="recognition-gallery">
+        <div class="gallery-track">
+            <div class="gallery-item">
+                <div class="gallery-image">
+                    [Photo: Palmer Luckey at Anduril HQ]
+                </div>
+                <div class="gallery-content">
+                    <h4>Palmer Luckey - Anduril HQ</h4>
+                    <p>The founder of Oculus tested our early models and recognized the breakthrough potential of thought-based interfaces.</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-image">
+                    [Photo: Eric Schmidt at A360 Summit]
+                </div>
+                <div class="gallery-content">
+                    <h4>Eric Schmidt - A360 Summit</h4>
+                    <p>Former Google CEO engaged directly on our vision for the future of human-AI interaction at an exclusive summit.</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-image">
+                    [Photo: Y Combinator Demo Day]
+                </div>
+                <div class="gallery-content">
+                    <h4>Y Combinator</h4>
+                    <p>Made us their first telepathic AI investment. They bet on category-defining companies.</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-image">
+                    [Photo: Learn Capital Event]
+                </div>
+                <div class="gallery-content">
+                    <h4>Learn Capital Flourish</h4>
+                    <p>Featured keynote at Flourish Conference, demonstrating to frontier tech investors from this $1B fund.</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-image">
+                    [Photo: SCRUM Japan]
+                </div>
+                <div class="gallery-content">
+                    <h4>SCRUM Connect Japan</h4>
+                    <p>Showcased to executives from Nintendo, Sony, and senior Japanese government officials.</p>
+                </div>
+            </div>
+            <!-- Duplicate for continuous scroll -->
+            <div class="gallery-item">
+                <div class="gallery-image">
+                    [Photo: Palmer Luckey at Anduril HQ]
+                </div>
+                <div class="gallery-content">
+                    <h4>Palmer Luckey - Anduril HQ</h4>
+                    <p>The founder of Oculus tested our early models and recognized the breakthrough potential of thought-based interfaces.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <!-- Full Story Scroll -->
     <!-- Full Story Scroll -->
