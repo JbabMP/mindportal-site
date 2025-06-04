@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Press & Media - MindPortal | The Story Spreading Worldwide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #000000;
+            --secondary: #ffffff;
+            --accent: #0066ff;
+            --accent-light: #4d94ff;
+            --accent-glow: #0066ff33;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-400: #ced4da;
+            --gray-500: #adb5bd;
+            --gray-600: #6c757d;
+            --gray-700: #495057;
+            --gray-800: #343a40;
+            --gray-900: #212529;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--primary);
+            color: var(--secondary);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 24px 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 48px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        /* Hero Section */
+        .news-hero {
+            padding: 200px 0 80px;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(ellipse at top, rgba(0, 102, 255, 0.15) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+
+        .hero-title {
+            font-size: clamp(56px, 8vw, 96px);
+            font-weight: 700;
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            margin-bottom: 32px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--gray-400) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(20px, 3vw, 28px);
+            font-weight: 300;
+            color: var(--gray-400);
+            line-height: 1.4;
+        }
+
+        /* Press Stats Bar */
+        .press-stats {
+            padding: 60px 0;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Hero Press Grid */
+        .hero-press-section {
+            padding: 120px 0 80px;
+            background: radial-gradient(ellipse at center, rgba(0, 102, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .hero-press-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .hero-press-title {
+            font-size: clamp(48px, 6vw, 64px);
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .hero-press-subtitle {
+            font-size: 20px;
+            color: var(--gray-400);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero-press-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-press-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 48px;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-press-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--gradient-3);
+            border-radius: 24px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.4s ease;
+        }
+
+        .hero-press-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 60px rgba(0, 102, 255, 0.3);
+        }
+
+        .hero-press-card:hover::before {
+            opacity: 0.3;
+        }
+
+        .hero-publication {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--gray-300);
+            margin-bottom: 20px;
+        }
+
+        .hero-article-title {
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 1.4;
+            margin-bottom: 16px;
+            color: var(--secondary);
+        }
+
+        .hero-article-excerpt {
+            font-size: 16px;
+            color: var(--gray-500);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .hero-read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .hero-read-more:hover {
+            gap: 12px;
+            color: var(--accent-light);
+        }
+
+        /* Full Story Scroll Section */
+        .full-story-section {
+            padding: 80px 0 120px;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
+            overflow: hidden;
+        }
+
+        .full-story-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .full-story-title {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .full-story-subtitle {
+            font-size: 18px;
+            color: var(--gray-400);
+        }
+
+        .press-scroll-container {
+            position: relative;
+            width: 100%;
+            padding: 40px 0;
+        }
+
+        .press-scroll-track {
+            display: flex;
+            gap: 32px;
+            animation: scrollPress 60s linear infinite;
+        }
+
+        @keyframes scrollPress {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .press-scroll-card {
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 32px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            color: inherit;            /* inherit --secondary (white) */
+            text-decoration: none;     /* no underline */
+        }
+
+
+        /* Also cover visited/hover/focus states */
+        .press-scroll-card:visited,
+        .press-scroll-card:hover,
+        .press-scroll-card:focus {
+        color: inherit;
+        text-decoration: none;
+        }
+
+        .press-scroll-card:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--accent);
+        }
+
+        .scroll-publication {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gray-400);
+            margin-bottom: 12px;
+        }
+
+        .scroll-headline {
+            font-size: 16px;
+            line-height: 1.4;
+            color: var(--gray-300);
+        }
+
+        /* Gradient fade edges */
+        .press-scroll-container::before,
+        .press-scroll-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 200px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .press-scroll-container::before {
+            left: 0;
+            background: linear-gradient(90deg, var(--primary) 0%, transparent 100%);
+        }
+
+        .press-scroll-container::after {
+            right: 0;
+            background: linear-gradient(90deg, transparent 0%, var(--primary) 100%);
+        }
+
+        /* Featured Spotlights */
+        .spotlights-section {
+            padding: 120px 0;
+            background: linear-gradient(180deg, #0a0a0a 0%, var(--primary) 100%);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: clamp(48px, 6vw, 64px);
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .spotlights-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+        }
+
+        .spotlight-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 32px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .spotlight-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.3);
+        }
+
+        .spotlight-media {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.1) 0%, rgba(102, 126, 234, 0.1) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--gray-500);
+            position: relative;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .play-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .spotlight-content {
+            padding: 48px;
+        }
+
+        .spotlight-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: var(--accent);
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .spotlight-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .spotlight-description {
+            font-size: 16px;
+            color: var(--gray-400);
+            line-height: 1.6;
+        }
+
+        /* Award Section */
+        .award-section {
+            padding: 120px 0;
+            background: radial-gradient(ellipse at center, rgba(0, 102, 255, 0.08) 0%, transparent 50%);
+            text-align: center;
+        }
+
+        .award-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding-bottom: 150px;
+            position: relative;
+        }
+
+        .award-badge {
+            display: inline-block;
+            padding: 8px 24px;
+            background: var(--accent);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 32px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 20px var(--accent-glow); }
+            to { box-shadow: 0 0 40px var(--accent-glow), 0 0 60px var(--accent-glow); }
+        }
+
+        .award-title {
+            font-size: clamp(48px, 6vw, 72px);
+            font-weight: 700;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .award-subtitle {
+            font-size: 24px;
+            color: var(--gray-400);
+            margin-bottom: 32px;
+        }
+
+        .award-description {
+            font-size: 18px;
+            color: var(--gray-300);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .award-year {
+            font-size: 120px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.05);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .spotlights-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-press-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .press-scroll-track a { 
+                text-decoration: none;
+                color: inherit;
+
+            }
+
+            .press-scroll-card {
+                min-width: 90%;
+                max-width: 350px;
+            }
+ 
+
+        }
+
+        @media (max-width: 768px) {
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-press-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">MindPortal</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="mission.html">Mission</a></li>
+                <li><a href="models.html">AI Models</a></li>
+                <li><a href="company.html">Company</a></li>
+                <li><a href="news.html" style="opacity: 1;">News</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- News Hero -->
+    <section class="news-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Our Work in the Press</h1>
+            <p class="hero-subtitle">From technical breakthroughs to global recognition,<br>explore how MindPortal is reshaping the future of human-AI interaction</p>
+        </div>
+    </section>
+
+    <!-- Press Stats -->
+    <section class="press-stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">20+</div>
+                <div class="stat-label">Media Features</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Countries</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1M+</div>
+                <div class="stat-label">Readers Reached</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="hero-press-grid">
+        <!-- The Times -->
+        <div class="hero-press-card">
+            <div class="hero-publication">The Times</div>
+            <h3 class="hero-article-title">
+                Muse Singer Matt Bellamy Backs Mind-Reading Tech from MindPortal
+            </h3>
+            <p class="hero-article-excerpt">
+                Muse frontman Matt Bellamy invests in MindPortal to develop mind-reading AI, aiming to enable thought-based control of computers and devices…
+            </p>
+            <a href="https://www.thetimes.com/business-money/technology/article/muse-singer-matt-bellamy-backs-mind-reading-tech-from-mindportal-5br9t5cn9"
+               class="hero-read-more"
+               target="_blank"
+               rel="noopener noreferrer">
+                Read full article →
+            </a>
+        </div>
+    
+       <!-- The Telegraph -->
+  <div class="hero-press-card">
+    <div class="hero-publication">Telegraph</div>
+    <h3 class="hero-article-title">UK Startup Pioneers Brain-Reading Headset</h3>
+    <p class="hero-article-excerpt">
+      MindPortal is planning to develop a brain-reading headset that decodes thoughts into text for various applications, from controlling robots to interacting with virtual reality…
+    </p>
+    <a href="https://www.telegraph.co.uk/technology/2021/05/23/muse-frontman-matt-bellamy-silicon-valley-investors-put-5m-brain/" class="hero-read-more">
+      Read full article →
+    </a>
+  </div>
+
+  <!-- Business Insider -->
+  <div class="hero-press-card">
+    <div class="hero-publication">Business Insider</div>
+    <h3 class="hero-article-title">Silicon Valley Startups Flooded with VC Offers</h3>
+    <p class="hero-article-excerpt">
+        Since presenting last Tuesday at Y Combinator’s Demo Day, Ekram Alam’s company MindPortal has been inundated with reach-outs from more than 120 angel investors and funds
+    </p>
+    <a href="https://www.businessinsider.com/silicon-valley-startups-are-getting-flooded-with-vc-funding-offers-2021-3" class="hero-read-more">
+      Read full article →
+    </a>
+  </div>
+
+  <!-- Forbes Japan -->
+  <div class="hero-press-card">
+    <div class="hero-publication">Forbes Japan</div>
+    <h3 class="hero-article-title">MindPortalが実現するテレパシーAIの未来</h3>
+    <p class="hero-article-excerpt">
+      「MindPortalの非侵襲的インターフェースは、脳波を高精度で解析し、思考を文字に変換することで、人間とAIの新たな扉を開く」と報じられています…
+    </p>
+    <a href="https://forbesjapan.com/articles/detail/60845" class="hero-read-more">
+      Read full article →
+    </a>
+  </div>
+
+  <!-- Yahoo Finance -->
+  <div class="hero-press-card">
+    <div class="hero-publication">Yahoo Finance</div>
+    <h3 class="hero-article-title">Major Breakthrough in Telepathic Human-AI</h3>
+    <p class="hero-article-excerpt">
+      MindPortal’s latest telepathic interface can now translate neural impulses into text almost in real time
+    </p>
+    <a href="https://finance.yahoo.com/news/major-breakthrough-telepathic-human-ai-090000772.html?guccounter=1" class="hero-read-more">
+      Read full article →
+    </a>
+  </div>
+
+  <!-- Psychology Today -->
+  <div class="hero-press-card">
+    <div class="hero-publication">Psychology Today</div>
+    <h3 class="hero-article-title">Breakthrough Interface Enables AI Access Using Thoughts</h3>
+    <p class="hero-article-excerpt">
+      Why type on a computer keyboard when you can use your thoughts to interact with ChatGPT? MindPortal has constructed a direct neural link that lets users converse with AI in free thought, bypassing traditional input…
+    </p>
+    <a href="https://www.psychologytoday.com/gb/blog/the-future-brain/202312/breakthrough-interface-enables-ai-chatgpt-access-using-thoughts" class="hero-read-more">
+      Read full article →
+    </a>
+  </div>
+    </div>
+
+    <!-- Full Story Scroll -->
+    <!-- Full Story Scroll -->
+<section class="full-story-section">
+    <div class="container">
+        <div class="full-story-header">
+            <h2 class="full-story-title">The Full Story</h2>
+            <p class="full-story-subtitle">20+ media features from publications worldwide</p>
+        </div>
+    </div>
+
+    <div class="press-scroll-container">
+        <div class="press-scroll-track">
+            <!-- First set -->
+            <a href="https://www.tomsguide.com/ai/exclusive-i-just-watched-the-future-of-ai-interaction-and-it-can-read-your-mind"
+               target="_blank" rel="noopener noreferrer"
+               class="press-scroll-card">
+                <div class="scroll-publication">Tom’s Guide</div>
+                <div class="scroll-headline">
+                    Exclusive: I Just Watched the Future of AI Interaction—and It Can Read Your Mind
+                </div>
+            </a>
+
+            <a href="https://appdevelopermagazine.com/telepathic-human-ai-communication-breakthrough-by-mindportal/"
+               target="_blank" rel="noopener noreferrer"
+               class="press-scroll-card">
+                <div class="scroll-publication">App Developer Magazine</div>
+                <div class="scroll-headline">
+                    Telepathic Human-AI Communication Breakthrough by MindPortal
+                </div>
+            </a>
+
+            <a href="https://www.uktech.news/news/english-singer-matt-bellamy-backs-londons-neuralink-rival-mindportal-in-35m-funding-round-20210525"
+               target="_blank" rel="noopener noreferrer"
+               class="press-scroll-card">
+                <div class="scroll-publication">UK Tech News</div>
+                <div class="scroll-headline">
+                    English Singer Matt Bellamy Backs London’s Neuralink Rival MindPortal in $3.5M Funding Round
+                </div>
+            </a>
+
+            <a href="https://www.unite.ai/ekram-alam-ceo-and-co-founder-of-mindportal-interview-series/"
+               target="_blank" rel="noopener noreferrer"
+               class="press-scroll-card">
+                <div class="scroll-publication">Unite AI</div>
+                <div class="scroll-headline">
+                    Ekram Alam, CEO and Co-Founder of MindPortal [Interview Series]
+                </div>
+            </a>
+
+            <a href="https://technewsday.com/mindportal-unveils-revolutionary-telepathic-chatgpt-communication-technology/"
+               target="_blank" rel="noopener noreferrer"
+               class="press-scroll-card">
+                <div class="scroll-publication">Tech News Day</div>
+                <div class="scroll-headline">
+                    MindPortal Unveils Revolutionary Telepathic ChatGPT Communication Technology
+                </div>
+            </a>
+
+            <a href="https://en.futuroprossimo.it/2023/12/mindportal-comunicare-con-lai-usando-solo-il-pensiero/"
+               target="_blank" rel="noopener noreferrer"
+               class="press-scroll-card">
+                <div class="scroll-publication">Futuro Prossimo</div>
+                <div class="scroll-headline">
+                    MindPortal: Comunicare con l’IA usando solo il pensiero
+                </div>
+            </a>
+
+            <a href="https://www.unite.ai/major-breakthrough-in-telepathic-human-ai-communication-mindspeech-decodes-seamless-thoughts-into-text/"
+               target="_blank" rel="noopener noreferrer"
+               class="press-scroll-card">
+                <div class="scroll-publication">Unite AI</div>
+                <div class="scroll-headline">
+                    Major Breakthrough in Telepathic Human-AI Communication: MindSpeech Decodes Seamless Thoughts into Text
+                </div>
+            </a>
+
+            <a href="https://uktechnews.co.uk/2023/12/12/announces-major-breakthrough-with-first-successful-non-invasive-seamless-telepathic-human-ai-communication-with-a-large-language-model/"
+               target="_blank" rel="noopener noreferrer"
+               class="press-scroll-card">
+                <div class="scroll-publication">UK Tech News</div>
+                <div class="scroll-headline">
+                    Announces Major Breakthrough with First Successful Non-Invasive, Seamless Telepathic Human-AI Communication with a Large Language Model
+                </div>
+            </a>
+
+            <a href="https://www.msn.com/en-us/news/technology/i-tried-a-new-ai-mind-reading-model-this-is-the-future-of-human-computer-interaction/ar-BB1oaKBS"
+               target="_blank" rel="noopener noreferrer"
+               class="press-scroll-card">
+                <div class="scroll-publication">MSN</div>
+                <div class="scroll-headline">
+                    I Tried a New AI Mind-Reading Model—This Is the Future of Human-Computer Interaction
+                </div>
+            </a>
+
+            <a href="https://www.itworldcanada.com/post/mindportal-unveils-revolutionary-telepathic-chatgpt-communication-technology"
+               target="_blank" rel="noopener noreferrer"
+               class="press-scroll-card">
+                <div class="scroll-publication">IT World Canada</div>
+                <div class="scroll-headline">
+                    MindPortal Unveils Revolutionary Telepathic ChatGPT Communication Technology
+                </div>
+            </a>
+
+            <!-- Duplicate set (for seamless loop) -->
+            <a href="https://www.tomsguide.com/ai/exclusive-i-just-watched-the-future-of-ai-interaction-and-it-can-read-your-mind"
+               target="_blank" rel="noopener noreferrer"
+               class="press-scroll-card">
+                <div class="scroll-publication">Tom’s Guide</div>
+                <div class="scroll-headline">
+                    Exclusive: I Just Watched the Future of AI Interaction—and It Can Read Your Mind
+                </div>
+            </a>
+
+            <a href="https://appdevelopermagazine.com/telepathic-human-ai-communication-breakthrough-by-mindportal/"
+               target="_blank" rel="noopener noreferrer"
+               class="press-scroll-card">
+                <div class="scroll-publication">App Developer Magazine</div>
+                <div class="scroll-headline">
+                    Telepathic Human-AI Communication Breakthrough by MindPortal
+                </div>
+            </a>
+
+            <a href="https://www.uktech.news/news/english-singer-matt-bellamy-backs-londons-neuralink-rival-mindportal-in-35m-funding-round-20210525"
+               target="_blank" rel="noopener noreferrer"
+               class="press-scroll-card">
+                <div class="scroll-publication">UK Tech News</div>
+                <div class="scroll-headline">
+                    English Singer Matt Bellamy Backs London’s Neuralink Rival MindPortal in $3.5M Funding Round
+                </div>
+            </a>
+
+            <a href="https://www.unite.ai/ekram-alam-ceo-and-co-founder-of-mindportal-interview-series/"
+               target="_blank" rel="noopener noreferrer"
+               class="press-scroll-card">
+                <div class="scroll-publication">Unite AI</div>
+                <div class="scroll-headline">
+                    Ekram Alam, CEO and Co-Founder of MindPortal [Interview Series]
+                </div>
+            </a>
+
+            <a href="https://technewsday.com/mindportal-unveils-revolutionary-telepathic-chatgpt-communication-technology/"
+               target="_blank" rel="noopener noreferrer"
+               class="press-scroll-card">
+                <div class="scroll-publication">Tech News Day</div>
+                <div class="scroll-headline">
+                    MindPortal Unveils Revolutionary Telepathic ChatGPT Communication Technology
+                </div>
+            </a>
+
+            <a href="https://en.futuroprossimo.it/2023/12/mindportal-comunicare-con-lai-usando-solo-il-pensiero/"
+               target="_blank" rel="noopener noreferrer"
+               class="press-scroll-card">
+                <div class="scroll-publication">Futuro Prossimo</div>
+                <div class="scroll-headline">
+                    MindPortal: Comunicare con l’IA usando solo il pensiero
+                </div>
+            </a>
+
+            <a href="https://www.unite.ai/major-breakthrough-in-telepathic-human-ai-communication-mindspeech-decodes-seamless-thoughts-into-text/"
+               target="_blank" rel="noopener noreferrer"
+               class="press-scroll-card">
+                <div class="scroll-publication">Unite AI</div>
+                <div class="scroll-headline">
+                    Major Breakthrough in Telepathic Human-AI Communication: MindSpeech Decodes Seamless Thoughts into Text
+                </div>
+            </a>
+
+            <a href="https://uktechnews.co.uk/2023/12/12/announces-major-breakthrough-with-first-successful-non-invasive-seamless-telepathic-human-ai-communication-with-a-large-language-model/"
+               target="_blank" rel="noopener noreferrer"
+               class="press-scroll-card">
+                <div class="scroll-publication">UK Tech News</div>
+                <div class="scroll-headline">
+                    Announces Major Breakthrough with First Successful Non-Invasive, Seamless Telepathic Human-AI Communication with a Large Language Model
+                </div>
+            </a>
+
+            <a href="https://www.msn.com/en-us/news/technology/i-tried-a-new-ai-mind-reading-model-this-is-the-future-of-human-computer-interaction/ar-BB1oaKBS"
+               target="_blank" rel="noopener noreferrer"
+               class="press-scroll-card">
+                <div class="scroll-publication">MSN</div>
+                <div class="scroll-headline">
+                    I Tried a New AI Mind-Reading Model—This Is the Future of Human-Computer Interaction
+                </div>
+            </a>
+
+            <a href="https://www.itworldcanada.com/post/mindportal-unveils-revolutionary-telepathic-chatgpt-communication-technology"
+               target="_blank" rel="noopener noreferrer"
+               class="press-scroll-card">
+                <div class="scroll-publication">IT World Canada</div>
+                <div class="scroll-headline">
+                    MindPortal Unveils Revolutionary Telepathic ChatGPT Communication Technology
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+    
+
+    <!-- Award Section -->
+    <section class="award-section">
+        <div class="container">
+            <div class="award-container">
+                <div class="award-year">2023</div>
+                <span class="award-badge">International Recognition</span>
+                <h2 class="award-title">Innovation of the Year</h2>
+                <p class="award-subtitle">Artificial Intelligence</p>
+                <p class="award-description">
+                    Winner of the International Music Award (IMA) for groundbreaking innovation in AI, 
+                    recognizing MindPortal's breakthrough in creating accessible thought-based communication technology.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Pause scroll on hover
+        const scrollContainer = document.querySelector('.press-scroll-track');
+        if (scrollContainer) {
+            scrollContainer.addEventListener('mouseenter', () => {
+                scrollContainer.style.animationPlayState = 'paused';
+            });
+            
+            scrollContainer.addEventListener('mouseleave', () => {
+                scrollContainer.style.animationPlayState = 'running';
+            });
+        }
+
+        // Smooth scroll reveal for sections
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.spotlight-card, .award-container').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(40px)';
+            el.style.transition = 'all 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
+

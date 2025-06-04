@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindPortal - Mission: The Next Frontier of Human Communication</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #000000;
+            --secondary: #ffffff;
+            --accent: #0066ff;
+            --accent-glow: #0066ff33;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-400: #ced4da;
+            --gray-500: #adb5bd;
+            --gray-600: #6c757d;
+            --gray-700: #495057;
+            --gray-800: #343a40;
+            --gray-900: #212529;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--primary);
+            color: var(--secondary);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 24px 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 48px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        /* Hero Section - Cinematic Opening */
+        .mission-hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: radial-gradient(ellipse at center, rgba(0, 102, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .mission-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><g opacity="0.1"><circle cx="200" cy="200" r="100" fill="%230066ff" /><circle cx="600" cy="400" r="150" fill="%230066ff" /><circle cx="1000" cy="600" r="80" fill="%230066ff" /></g></svg>');
+            background-size: cover;
+            animation: float 20s ease-in-out infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.05); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 48px;
+        }
+
+        .hero-title {
+            font-size: clamp(64px, 10vw, 120px);
+            font-weight: 700;
+            line-height: 0.9;
+            letter-spacing: -0.04em;
+            margin-bottom: 48px;
+            opacity: 0;
+            transform: translateY(60px);
+            animation: heroReveal 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(20px, 3vw, 28px);
+            font-weight: 300;
+            color: var(--gray-400);
+            line-height: 1.4;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: heroReveal 1.2s cubic-bezier(0.23, 1, 0.32, 1) 0.3s forwards;
+        }
+
+        @keyframes heroReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Evolution Timeline Section */
+        .evolution-section {
+            padding: 160px 0;
+            position: relative;
+            background: linear-gradient(180deg, var(--primary) 0%, #0a0a0a 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 120px;
+        }
+
+        .section-title {
+            font-size: clamp(48px, 7vw, 80px);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+        }
+
+        /* Timeline Design */
+        .timeline {
+            position: relative;
+            padding: 80px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, transparent 0%, var(--accent) 10%, var(--accent) 90%, transparent 100%);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 120px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(odd) {
+            padding-right: 50%;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            padding-left: 50%;
+            text-align: left;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            transform-origin: right center;
+            }
+
+        .timeline-item:nth-child(even) .timeline-content {
+        transform-origin: left center;
+        }
+
+        .timeline-node {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border: 3px solid var(--accent);
+            border-radius: 50%;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-node {
+            transform: translate(-50%, -50%) scale(1.2);
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+
+        .timeline-content {
+            padding: 48px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-content {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--accent);
+            transform: scale(1.02);
+        }
+
+        .timeline-era {
+            font-size: 14px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .timeline-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--gray-400) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .timeline-description {
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--gray-400);
+            margin-bottom: 24px;
+        }
+
+        .timeline-visual {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.1) 0%, transparent 50%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: var(--gray-500);
+            border: 2px dashed rgba(255, 255, 255, 0.1);
+            margin-top: 24px;
+        }
+
+        /* Vision Statement Section */
+        .vision-section {
+            padding: 160px 0;
+            background: radial-gradient(ellipse at top, rgba(0, 102, 255, 0.1) 0%, transparent 50%);
+            position: relative;
+        }
+
+        .vision-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .vision-text {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 300;
+            line-height: 1.4;
+            letter-spacing: -0.02em;
+            margin-bottom: 48px;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .vision-text.visible {
+            animation: fadeInUp 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .vision-highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Impact Grid */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .impact-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 48px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .impact-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 50%);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .impact-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+        }
+
+        .impact-card:hover::before {
+            opacity: 1;
+            top: -50%;
+            left: -50%;
+        }
+
+        .impact-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, var(--accent) 0%, #0044aa 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+        }
+
+        .impact-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .impact-description {
+            font-size: 16px;
+            color: var(--gray-400);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Call to Action Section */
+        .mission-cta {
+            padding: 200px 0;
+            background: linear-gradient(180deg, #0a0a0a 0%, var(--primary) 50%, #000428 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-cta::before,
+        .mission-cta::after {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(100px);
+        }
+
+        .mission-cta::before {
+            background: var(--accent);
+            top: -300px;
+            right: -300px;
+            opacity: 0.2;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .mission-cta::after {
+            background: #764ba2;
+            bottom: -300px;
+            left: -300px;
+            opacity: 0.2;
+            animation: pulse 4s ease-in-out infinite reverse;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.2; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-title {
+            font-size: clamp(48px, 7vw, 80px);
+            font-weight: 700;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cta-subtitle {
+            font-size: 24px;
+            color: var(--gray-400);
+            margin-bottom: 48px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 40px;
+            }
+
+            .timeline-item {
+                padding-left: 80px !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+
+            .timeline-node {
+                left: 40px;
+            }
+
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">MindPortal</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="mission.html" style="opacity: 1;">Mission</a></li>
+                <li><a href="models.html">AI Models</a></li>
+                <li><a href="company.html">Company</a></li>
+                <li><a href="news.html">News</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mission Hero -->
+    <section class="mission-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">The Next Frontier of<br>Human Communication</h1>
+            <p class="hero-subtitle">From language to writing to the internet, <br> each leap transformed our species.</p>
+            <br><br>
+            <p class="hero-subtitle">Thought-based communication with AI <br> marks the next era of communication.</p>
+            
+        </div>
+    </section>
+
+    <!-- Evolution Timeline -->
+    <section class="evolution-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">The Evolution of Human Connection</h2>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-node"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-era">50,000 BCE</div>
+                        <h3 class="timeline-title">Language</h3>
+                        <p class="timeline-description">Made us human—it let us share thoughts for the first time</p>
+                        <div class="timeline-visual">
+                            <img src="assets/language.png" alt="Early humans communicating" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-node"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-era">3,200 BCE</div>
+                        <h3 class="timeline-title">Writing</h3>
+                        <p class="timeline-description">Made us civilizations—it let thoughts transcend time</p>
+                        <div class="timeline-visual">
+                            <img src="assets/writing.png" alt="Ancient scripts and tablets" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-node"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-era">1995</div>
+                        <h3 class="timeline-title">The Internet</h3>
+                        <p class="timeline-description">Made us global—it let thoughts transcend space</p>
+                        <div class="timeline-visual">
+                            <img src="assets/internet.png" alt="Global network connections" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-node"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-era">NOW</div>
+                        <h3 class="timeline-title">Direct Thought Communication</h3>
+                        <p class="timeline-description">Telepathic interfaces—thoughts at the speed of thinking itself</p>
+                        <div class="timeline-visual">
+                            <img src="assets/telepathy.png" alt="Brain-to-AI connection" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  
+
+    <!-- Mission CTA -->
+    <section class="mission-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">We're building humanity's next chapter.</h2>
+                <p class="cta-subtitle">For the first time in history, humans will share thoughts at the speed of thinking itself.</p>
+                <div class="impact-grid">
+                    <div class="impact-card reveal">
+                        <div class="impact-icon">🌍</div>
+                        <h3 class="impact-title">Universal Access</h3>
+                        <p class="impact-description">Breaking down barriers for millions who cannot speak, type, or move freely</p>
+                    </div>
+                    <div class="impact-card reveal">
+                        <div class="impact-icon">🧠</div>
+                        <h3 class="impact-title">Cognitive Symbiosis</h3>
+                        <p class="impact-description">Seamless integration between human creativity and AI capability</p>
+                    </div>
+                    <div class="impact-card reveal">
+                        <div class="impact-icon">⚡</div>
+                        <h3 class="impact-title">Instant Understanding</h3>
+                        <p class="impact-description">Communication at the speed of thought</p>
+                    </div>
+                </div>
+                
+                <h3 style="font-size: 36px; margin-top: 64px; font-weight: 600;">This is our mission. This is why MindPortal exists.</h3>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script>
+        // (Your mission page scroll reveal logic remains the same)
+        const revealElements = document.querySelectorAll('.reveal, .timeline-item, .vision-text');
+        
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active', 'visible');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+    </script>
+</body>
+</html>

@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindPortal - The AI Lab Building Tomorrow's Interfaces</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #000000;
+            --secondary: #ffffff;
+            --accent: #0066ff;
+            --accent-light: #4d94ff;
+            --accent-glow: #0066ff33;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-400: #ced4da;
+            --gray-500: #adb5bd;
+            --gray-600: #6c757d;
+            --gray-700: #495057;
+            --gray-800: #343a40;
+            --gray-900: #212529;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--primary);
+            color: var(--secondary);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 24px 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 48px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        /* Company Hero */
+        .company-hero {
+            padding: 200px 0 120px;
+            background: linear-gradient(180deg, var(--primary) 0%, #0a0a0a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .company-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 50%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
+
+        .hero-title {
+            font-size: clamp(48px, 7vw, 88px);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            margin-bottom: 32px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--gray-400) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 24px;
+            line-height: 1.5;
+            color: var(--gray-400);
+            margin-bottom: 48px;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 32px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-8px);
+            background: rgba(0, 102, 255, 0.1);
+            border-color: var(--accent);
+        }
+
+        .stat-number {
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Operating System Section */
+        .process-section {
+            padding: 120px 0;
+            background: radial-gradient(ellipse at center, rgba(0, 102, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            color: var(--gray-400);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Process Steps */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-top: 80px;
+        }
+
+        .process-card {
+            position: relative;
+            padding: 48px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            overflow: hidden;
+        }
+
+        .process-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 102, 255, 0.2), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .process-card:hover::before {
+            left: 100%;
+        }
+
+        .process-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.2);
+        }
+
+        .process-number {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .process-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .process-description {
+            font-size: 16px;
+            color: var(--gray-400);
+            line-height: 1.6;
+        }
+
+        /* Founders Section */
+        .founders-section {
+            padding: 120px 0;
+            background: linear-gradient(180deg, #0a0a0a 0%, var(--primary) 100%);
+        }
+
+        .founders-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 80px;
+            margin-top: 80px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .founder-card {
+            text-align: center;
+            position: relative;
+        }
+
+        .founder-image {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto 32px;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.2) 0%, rgba(102, 126, 234, 0.2) 100%);
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--gray-500);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .founder-card:hover .founder-image {
+            transform: scale(1.05);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.3);
+        }
+
+        .founder-name {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .founder-title {
+            font-size: 18px;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+
+        .founder-bio {
+            font-size: 16px;
+            color: var(--gray-400);
+            line-height: 1.6;
+            margin-bottom: 24px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .founder-links {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .founder-link {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .founder-link:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Team Heritage Section */
+        .heritage-section {
+            padding: 120px 0;
+            background: radial-gradient(ellipse at bottom, rgba(0, 102, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .heritage-logos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 48px;
+      margin-top: 80px;
+    }
+
+    /* Remove border and hover effects entirely */
+    .heritage-logo {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;       /* no background */
+      border: none;                   /* remove border */
+      cursor: default;                /* no pointer */
+      transition: none;               /* no hover transition */
+    }
+
+    .heritage-logo img {
+      max-height: 80px;
+      object-fit: contain;
+    }
+
+    /* DeepMind on a white square */
+    .logo-bg {
+  width: 80px;
+  height: 80px;
+  background: #fff;
+ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Constrain the DeepMind image inside that white square */
+.logo-bg img {
+  max-width: 64px;
+  max-height: 64px;
+}
+
+
+
+
+
+
+        /* IP Section */
+        .ip-section {
+            padding: 120px 0;
+            background: linear-gradient(180deg, var(--primary) 0%, #0a0a0a 100%);
+        }
+
+        .ip-visualization {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-top: 80px;
+        }
+
+
+        .ip-content {
+            max-width: 600px;    /* or whatever width you prefer */
+            margin: 0 auto;  
+        }
+
+
+        .ip-content h3 {
+            max-width: 600px;    /* or whatever width you prefer */
+            margin: 0 auto;  
+            font-size: 36px;
+            margin-bottom: 32px;
+        }
+
+        .ip-list {
+            list-style: none;
+        }
+
+        .ip-item {
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .ip-item:hover {
+            padding-left: 16px;
+            border-color: var(--accent);
+        }
+
+        .ip-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(0, 102, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .ip-text h4 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .ip-text p {
+            font-size: 16px;
+            color: var(--gray-400);
+            line-height: 1.5;
+        }
+
+        .ip-visual {
+            width: 100%;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ip-visual img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            /* optional: add a subtle border or shadow if desired */
+        }
+
+        .ip-visual::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.5; }
+        }
+
+        /* Partner CTA Section */
+        .partner-section {
+            padding: 160px 0;
+            background: linear-gradient(135deg, #000428 0%, #004e92 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partner-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><g opacity="0.05"><path d="M0,400 Q300,300 600,400 T1200,400" stroke="%23ffffff" stroke-width="2" fill="none"/><path d="M0,450 Q300,350 600,450 T1200,450" stroke="%23ffffff" stroke-width="2" fill="none"/></g></svg>');
+            background-size: cover;
+        }
+
+        .partner-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .partner-title {
+            font-size: clamp(48px, 7vw, 72px);
+            font-weight: 700;
+            margin-bottom: 32px;
+        }
+
+        .partner-list {
+            font-size: 24px;
+            line-height: 2;
+            margin-bottom: 48px;
+            color: var(--gray-300);
+        }
+
+        .partner-list li {
+            list-style: none;
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 16px;
+        }
+
+        .partner-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .contact-button {
+            padding: 24px 56px;
+            background: var(--secondary);
+            color: var(--primary);
+            border-radius: 100px;
+            font-size: 20px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .contact-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .founders-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .ip-visualization {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 768px) {
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .heritage-logos {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">MindPortal</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="mission.html">Mission</a></li>
+                <li><a href="models.html">AI Models</a></li>
+                <li><a href="company.html" style="opacity: 1;">Company</a></li>
+                <li><a href="news.html">News</a></li>
+            </ul>
+        </div>
+    </nav>
+
+   <!-- Company Hero -->
+   <section class="company-hero">
+    <div class="container">
+        <div class="hero-content">
+            <p class="hero-subtitle">The AI Lab Building Tomorrow's Interfaces</p>
+            <h1 class="hero-title">We operate like Bell Labs for the age of neural interfaces</h1>
+            <p class="hero-description">A pure research powerhouse that creates interface innovations. We build the impossible. Then we build it again.</p>
+            
+            <div class="stats-bar fade-in">
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">World-Firsts</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number"><6M</div>
+                    <div class="stat-label">Total Funding</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number"><10</div>
+                    <div class="stat-label">Team Size</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">13</div>
+                    <div class="stat-label">Patents Filed</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Operating System -->
+<section class="process-section">
+    <div class="container">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Our Operating System</h2>
+            <p class="section-subtitle">We execute efficiently to produce valuable innovations with less funding and a smaller team</p>
+        </div>
+
+        <div class="process-grid">
+            <div class="process-card fade-in">
+                <div class="process-number">1</div>
+                <h3 class="process-title">Find "impossible" problems</h3>
+                <p class="process-description">Identify important challenges in human-AI interaction</p>
+            </div>
+            <div class="process-card fade-in">
+                <div class="process-number">2</div>
+                <h3 class="process-title">Assemble world-class specialists</h3>
+                <p class="process-description">Build the exact team needed for that specific breakthrough</p>
+            </div>
+            <div class="process-card fade-in">
+                <div class="process-number">3</div>
+                <h3 class="process-title">Build until it works</h3>
+                <p class="process-description">Demonstrate conclusive proof of a working system</p>
+            </div>
+            <div class="process-card fade-in">
+                <div class="process-number">4</div>
+                <h3 class="process-title">Capture the IP</h3>
+                <p class="process-description">Document the breakthrough and move to the next innovation</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Founding Team -->
+<!-- <section class="founders-section">
+    <div class="container">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Founding Team</h2>
+            <p class="section-subtitle">The minds that repeatedly deliver the impossible</p>
+        </div>
+
+        <div class="founders-grid">
+            <div class="founder-card fade-in">
+                <div class="founder-image">[CEO Photo]</div>
+                <h3 class="founder-name">[CEO Name]</h3>
+                <p class="founder-title">CEO & Chief Vision Officer</p>
+                <p class="founder-bio">Conceived and drives vision for each breakthrough. [Specific background that establishes credibility]</p>
+                <div class="founder-links">
+                    <a href="#" class="founder-link">LinkedIn</a>
+                    <a href="#" class="founder-link">Forbes Technology Council</a>
+                </div>
+            </div>
+            <div class="founder-card fade-in">
+                <div class="founder-image">[CTO Photo]</div>
+                <h3 class="founder-name">[CTO Name]</h3>
+                <p class="founder-title">CTO & Chief Research Officer</p>
+                <p class="founder-bio">Architects the "impossible" into working systems. [Specific background that establishes credibility]</p>
+                <div class="founder-links">
+                    <a href="#" class="founder-link">LinkedIn</a>
+                    <a href="#" class="founder-link">Forbes Technology Council</a>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 80px;" class="fade-in">
+            <h3 style="font-size: 28px; margin-bottom: 24px;">Combined Track Record</h3>
+            <p style="font-size: 20px; color: var(--gray-400); line-height: 1.8; max-width: 800px; margin: 0 auto;">
+                Built and led teams of DeepMind, DARPA, and Big Tech alumni<br>
+                Generated more patents than team members<br>
+                Delivered repeated breakthroughs with minimal resources
+            </p>
+        </div>
+    </div>
+</section> -->
+
+<!-- Team Heritage -->
+<section class="heritage-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">Team Heritage</h2>
+        <p class="section-subtitle">
+          We've built and led teams with world-class AI talent from
+        </p>
+      </div>
+  
+      <div class="heritage-logos">
+        <!-- DeepMind (Clearbit) -->
+        <div class="heritage-logo deepmind-logo fade-in">
+            <div class="logo-bg">
+                <img
+                  src="https://logo.clearbit.com/deepmind.com?size=80"
+                  alt="DeepMind logo"
+                />
+              </div>
+      
+        </div>
+  
+        <!-- DARPA (Clearbit) -->
+        <div class="heritage-logo fade-in">
+          <img
+            src="https://logo.clearbit.com/darpa.mil?size=80"
+            alt="DARPA logo"
+          />
+        </div>
+  
+        <!-- University of Oxford (Clearbit) -->
+        <div class="heritage-logo fade-in">
+          <img
+            src="https://logo.clearbit.com/ox.ac.uk?size=80"
+            alt="Oxford University logo"
+          />
+        </div>
+  
+        <!-- University of Cambridge (Clearbit) -->
+        <div class="heritage-logo fade-in">
+          <img
+            src="https://logo.clearbit.com/cam.ac.uk?size=80"
+            alt="Cambridge University logo"
+          />
+        </div>
+  
+        <!-- Imperial College London (Clearbit) -->
+        <div class="heritage-logo fade-in">
+          <img
+            src="https://logo.clearbit.com/imperial.ac.uk?size=80"
+            alt="Imperial College London logo"
+          />
+        </div>
+      </div>
+  
+      <div style="margin-top: 80px; text-align: center;" class="fade-in">
+        <p style="font-size: 18px; color: var(--gray-400);">
+          Collaborated with DARPA-backed labs
+        </p>
+        <div
+          style="
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin-top: 32px;
+          "
+        >
+          <!-- University of Illinois Urbana-Champaign (Clearbit) -->
+          <div class="heritage-logo" style="width: 200px;">
+            <img
+              src="https://logo.clearbit.com/illinois.edu?size=80"
+              alt="UIUC logo"
+            />
+          </div>
+  
+          <!-- Carnegie Mellon University (Clearbit) -->
+          <div class="heritage-logo" style="width: 200px;">
+            <img
+              src="https://logo.clearbit.com/cmu.edu?size=80"
+              alt="CMU logo"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+<!-- Intellectual Property -->
+<section class="ip-section">
+    <div class="container">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Intellectual Property</h2>
+            <p class="section-subtitle">Protected Innovation</p>
+        </div>
+
+        <div class="ip-visualization">
+            <div class="ip-content fade-in">
+                <ul class="ip-list">
+                    <li class="ip-item">
+                        <div class="ip-icon">🛡️</div>
+                        <div class="ip-text">
+                            <h4>13 Patents Filed</h4>
+                            <p>Across US and Europe, covering fundamental breakthroughs</p>
+                        </div>
+                    </li>
+                    <li class="ip-item">
+                        <div class="ip-icon">🧠</div>
+                        <div class="ip-text">
+                            <h4>AI Architectures</h4>
+                            <p>Novel neural network designs for thought decoding</p>
+                        </div>
+                    </li>
+                    <li class="ip-item">
+                        <div class="ip-icon">🔬</div>
+                        <div class="ip-text">
+                            <h4>Hardware Optimization</h4>
+                            <p>Methods for enhancing neural signal capture and processing</p>
+                        </div>
+                    </li>
+                    <li class="ip-item">
+                        <div class="ip-icon">📊</div>
+                        <div class="ip-text">
+                            <h4>Proprietary Datasets</h4>
+                            <p>Exclusive training data impossible to replicate</p>
+                        </div>
+                    </li>
+                    <li class="ip-item">
+                        <div class="ip-icon">🔐</div>
+                        <div class="ip-text">
+                            <h4>Trade Secrets</h4>
+                            <p>Training paradigms and data collection methods</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="ip-visual fade-in">
+                <img
+                src="assets/neurons.png"
+                alt="Abstract neural network illustration"
+            />
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Partner With Us -->
+<section class="partner-section">
+    <div class="container">
+        <div class="partner-content">
+            <h2 class="partner-title">Partner With Us</h2>
+            <p style="font-size: 28px; margin-bottom: 48px; color: var(--gray-300);">
+                For the right strategic partner, we can:
+            </p>
+            <ul class="partner-list">
+                <li>Scale existing breakthroughs to commercially viable products</li>
+                <li>Develop new thought-based AI models for any interface problem</li>
+                <li>Build and lead teams to rapidly deliver moonshots</li>
+                <li>Define how humanity interfaces with AI</li>
+            </ul>
+            <a href="mailto:info@mindportal.com" class="contact-button">Reach Out to the Team</a>
+            <div style="margin-top: 48px; font-size: 16px; color: var(--gray-400);">
+                <p>For media inquiries: press@mindportal.com</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <script>
+        // (Your company page scroll animations remain exactly the same)
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
