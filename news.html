@@ -586,6 +586,23 @@
             z-index: -1;
         }
 
+        .contact-button {
+            padding: 24px 56px;
+            background: var(--secondary);
+            color: var(--primary);
+            border-radius: 100px;
+            font-size: 20px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .contact-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.3);
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .stats-container {
@@ -711,9 +728,9 @@
   <!-- Forbes Japan -->
   <div class="hero-press-card">
     <div class="hero-publication">Forbes Japan</div>
-    <h3 class="hero-article-title">MindPortalが実現するテレパシーAIの未来</h3>
+    <h3 class="hero-article-title">The future of telepathic AI made possible by MindPortal</h3>
     <p class="hero-article-excerpt">
-      「MindPortalの非侵襲的インターフェースは、脳波を高精度で解析し、思考を文字に変換することで、人間とAIの新たな扉を開く」と報じられています…
+      MindPortal's non-invasive interface opens new doors for humans and AI by analyzing brainwaves with high precision and converting thoughts into text," it has been reported...<i>(translated from Japanese)</i>
     </p>
     <a href="https://forbesjapan.com/articles/detail/60845" class="hero-read-more">
       Read full article →
@@ -746,6 +763,9 @@
     </div>
 
     <div class="recognition-gallery">
+        <div class="full-story-header">
+            <h2 class="full-story-title">Our Technology has been Showcased Globally</h2>
+        </div>
         <div class="gallery-track">
             <div class="gallery-item">
                 <div class="gallery-image">
@@ -1018,13 +1038,13 @@
                 <h2 class="award-title">Innovation of the Year</h2>
                 <p class="award-subtitle">Artificial Intelligence</p>
                 <p class="award-description">
-                    Winner of the International Music Award (IMA) for groundbreaking innovation in AI, 
-                    recognizing MindPortal's breakthrough in creating accessible thought-based communication technology.
+                    Winner of the 2023 IMA Award for groundbreaking innovation in AI, recognizing MindPortal's breakthrough achievements in creating thought-based communication technology
                 </p>
             </div>
+            <a href="mailto:press@mindportal.com" class="contact-button">For media enquiries: press@mindportal.com</a>
         </div>
     </section>
-
+       
     <script>
         // Pause scroll on hover
         const scrollContainer = document.querySelector('.press-scroll-track');

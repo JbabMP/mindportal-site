@@ -30,6 +30,10 @@
             --gray-900: #212529;
         }
 
+        html {
+        scroll-behavior: smooth;
+    }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background: var(--primary);
@@ -84,6 +88,56 @@
         .nav-links a:hover {
             opacity: 1;
         }
+
+        /* --- Dropdown Menu Styles --- */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-top: 16px; /* Space between nav and menu */
+    display: none; /* Hidden by default */
+    z-index: 1000;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block; /* Show on hover */
+}
+
+.dropdown-menu a {
+    display: block;
+    background: rgba(33, 37, 41, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: var(--secondary);
+    padding: 12px 24px;
+    white-space: nowrap;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid var(--gray-800);
+}
+
+.dropdown-menu a:first-child {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+.dropdown-menu a:last-child {
+    border-bottom: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu a.active {
+    background: var(--accent);
+    color: var(--secondary);
+}
+
 
         /* Model Hero */
         .model-hero {
@@ -394,6 +448,100 @@
             color: var(--gray-400);
             line-height: 1.5;
         }
+
+
+          /* Impact Grid */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .impact-card-link {
+            text-decoration: none; /* Removes the underline */
+            color: inherit;      /* Makes text inside the link inherit its color */
+            display: block;      /* Ensures the link takes up the full card space */
+         }
+        
+
+        .impact-card {
+            /* background: rgba(255, 255, 255, 0.03); */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 48px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Card 1 (MindSpeech): Deep Purple to Royal Blue */
+.impact-grid a:nth-child(1) .impact-card {
+    background: linear-gradient(135deg, #3A1C71 0%, #9942D7 100%);
+}
+
+/* Card 2 (MindGPT): Royal Blue to a vibrant Accent Blue */
+.impact-grid a:nth-child(2) .impact-card {
+    background: linear-gradient(135deg, #9942D7 0%, var(--accent) 100%);
+}
+
+/* Card 3 (MindClick): Accent Blue to a bright Cyan */
+.impact-grid a:nth-child(3) .impact-card {
+    background: linear-gradient(135deg, var(--accent) 0%, #019ba3 100%);
+}
+
+        .impact-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 50%);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .impact-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+        }
+
+        .impact-card:hover::before {
+            opacity: 1;
+            top: -50%;
+            left: -50%;
+        }
+
+        .impact-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, var(--accent) 0%, #0044aa 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+        }
+
+        .impact-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .impact-description {
+            font-size: 16px;
+            color: var(--gray-400);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
 
         /* PERFORMANCE METRICS SECTION */
 .metrics-section {
@@ -797,24 +945,64 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">MindPortal</div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="mission.html">Mission</a></li>
-                <li><a href="models.html" style="opacity: 1;">AI Models</a></li>
-                <li><a href="company.html">Company</a></li>
-                <li><a href="news.html">News</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Model Hero -->
+   <nav>
+    <div class="nav-container">
+        <div class="logo">MindPortal</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="mission.html">Mission</a></li>
+            <li class="dropdown">
+                <a href="models.html" class="nav-link active">AI Models</a>
+                <div class="dropdown-menu">
+                    <a href="#mindspeech-section" class="dropdown-link">MindSpeech</a>
+                    <a href="#mindgpt-section" class="dropdown-link">MindGPT</a>
+                    <a href="#mindclick-section" class="dropdown-link">MindClick</a>
+                </div>
+            </li>
+            <li><a href="company.html">Company</a></li>
+            <li><a href="news.html">News</a></li>
+        </ul>
+    </div>
+</nav>
+ <!-- Model Hero -->
     <section class="model-hero">
         <div class="container">
             <div class="hero-content">
-                <span class="model-badge">World's First</span>
+                <h1 class="hero-title">Our AI Models</h1>
+                <p class="hero-subtitle">Three world's first capabilities</p>
+            </div>
+            <div class="impact-grid">
+            <a href="#mindspeech-section" class="impact-card-link">
+                <div class="impact-card reveal">
+                    <h3 class="impact-title">MindSpeech</h3>
+                    <p class="impact-description">Translate natural, imagined speech directly into text</p>
+                </div>
+            </a>
+
+            <a href="#mindgpt-section" class="impact-card-link">
+                <div class="impact-card reveal">
+                    <h3 class="impact-title">MindGPT</h3>
+                    <p class="impact-description">Send language-based thought commands directly to AI assistants</p>
+                </div>
+            </a>
+
+            <a href="#mindclick-section" class="impact-card-link">
+                <div class="impact-card reveal">
+                    <h3 class="impact-title">MindClick</h3>
+                    <p class="impact-description">The telepathic mouse-click. Navigate any GUI hands-free</p>
+                </div>
+            </a>
+        </div>
+        </div>
+    </section>
+
+
+
+    <!-- Model Hero -->
+    <section id="mindspeech-section" class="model-hero">
+        <div class="container">
+            <div class="hero-content">
+                <!-- <span class="model-badge">World's First</span> -->
                 <h1 class="hero-title">MindSpeech</h1>
                 <p class="hero-subtitle">The first AI system to decode free-form imagined speech. Think naturally, in your own words, about any topic.</p>
             </div>
@@ -1015,10 +1203,10 @@
     </section>
 
     <!-- Model Hero -->
-    <section class="model-hero">
+    <section id="mindgpt-section" class="model-hero">
         <div class="container">
             <div class="hero-content">
-                <span class="model-badge">World's First</span>
+                <!-- <span class="model-badge">World's First</span> -->
                 <h1 class="hero-title">MindGPT</h1>
                 <p class="hero-subtitle">The first AI system to demonstrate telepathic interaction from a human brain to an AI assistant.</p>
             </div>
@@ -1091,10 +1279,10 @@
     </section>
 
      <!-- Model Hero -->
-     <section class="model-hero">
+     <section id="mindclick-section" class="model-hero">
         <div class="container">
             <div class="hero-content">
-                <span class="model-badge">World's First</span>
+                <!-- <span class="model-badge">World's First</span> -->
                 <h1 class="hero-title">MindClick</h1>
                 <p class="hero-subtitle">Select any element on a GUI just by intending to do so.</p>
             </div>
@@ -1174,23 +1362,39 @@
 
     
     <script>
-        // (Your model page scroll animation JS remains exactly the same)
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in, .scale-in').forEach(el => {
-            observer.observe(el);
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
         });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in, .scale-in').forEach(el => {
+        observer.observe(el);
+    });
+
+
+    // --- Add this new code to fix the scroll bounce ---
+    document.querySelectorAll('a.impact-card-link').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
     </script>
 </body>
 </html>

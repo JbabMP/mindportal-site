@@ -29,6 +29,7 @@
             --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #5ec9ff 0%, #2e58ff 100%);
             --gradient-dark: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
         }
 
@@ -242,7 +243,7 @@
         /* Y Combinator Bar */
         .yc-bar {
             background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 102, 255, 0.02) 100%);
-            padding: 80px 0;
+            padding: 0 0 0 0;
             position: relative;
             overflow: hidden;
         }
@@ -468,7 +469,7 @@
             width: 80px;
             height: 80px;
             margin: 0 auto 24px;
-            background: var(--gradient-3);
+            background: var(--gradient-4);
             border-radius: 24px;
             display: flex;
             align-items: center;
@@ -1073,6 +1074,14 @@
             flex-wrap: wrap;
         }
 
+            .findout-button-press { 
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 100px;
+            flex-wrap: wrap;
+        }
+
         .btn {
             padding: 20px 48px;
             border-radius: 100px;
@@ -1199,7 +1208,7 @@
     <section class="hero" id="home">
         <div class="hero-bg"></div>
         <div class="hero-content">
-            <h1 class="display-1">We build AI models<br>that read minds.</h1>
+            <h1 class="display-1">We've built AI models<br>that read minds.</h1>
             <p class="body-large">Three world-first breakthroughs. <br> Each a different form of thought-based communication.<br>All proven today.</p>
         </div>
     </section>
@@ -1244,29 +1253,29 @@
 
                 <div class="vision-grid">
                     <div class="vision-card reveal">
-                        <div class="vision-icon">🧠</div>
+                        <div class="vision-icon"><img width="50" height="50" src="https://img.icons8.com/pastel-glyph/128/augmented-reality-1-1.png" alt="augmented-reality-1-1"/></div>
                         <h3 class="heading-2">AR glasses that understand your thoughts</h3>
                         <p class="body-regular" style="color: var(--gray-400);">Silent, seamless interaction with digital worlds</p>
                     </div>
                     <div class="vision-card reveal">
-                        <div class="vision-icon">🤖</div>
+                        <div class="vision-icon"><img width="50" height="50" src="https://img.icons8.com/ios-filled/50/ai-chatting.png" alt="ai-chatting"/></div>
                         <h3 class="heading-2">AI assistants that respond without the need to speak</h3>
                         <p class="body-regular" style="color: var(--gray-400);">Instant understanding, complete privacy</p>
                     </div>
                     <div class="vision-card reveal">
-                        <div class="vision-icon">🔒</div>
+                        <div class="vision-icon"><img width="50" height="50" src="https://img.icons8.com/ios-filled/50/privacy.png" alt="privacy"/></div>
                         <h3 class="heading-2">Complete privacy when you communicate</h3>
                         <p class="body-regular" style="color: var(--gray-400);">Your thoughts, your control, no intermediary</p>
                     </div>
                     <div class="vision-card reveal">
-                        <div class="vision-icon">♿</div>
+                        <div class="vision-icon"><img width="50" height="50" src="https://img.icons8.com/ios-filled/50/accessibility1--v1.png" alt="accessibility1--v1"/></div>
                         <h3 class="heading-2">Accessibility for millions</h3>
                         <p class="body-regular" style="color: var(--gray-400);">Changing the lives of those with disabilities and illness</p>
                     </div>
                 </div>
 
                 <p class="body-large reveal" style="text-align: center; margin-top: 64px; color: var(--gray-400);">
-                    This future is not decades away - We've already built the foundation.<br>
+                    This future is not decades away. We've already built the foundation.<br>
                     With less than $6M and a team that never exceeded 10 people.
                 </p>
             </div>
@@ -1287,7 +1296,7 @@
                     <h3 class="heading-1">MindSpeech</h3>
                     <p class="model-tagline body-large">Imagine any sentence you want. MindSpeech decodes it.</p>
                     <ul class="model-features">
-                        <li>First ever free-form thought decoder</li>
+                        <li>First ever non-invasive free-form thought decoder</li>
                         <li>No templates, no memorization</li>
                         <li>Generalizes to new users</li>
                         <li>Works across hundreds of topics</li>
@@ -1320,10 +1329,7 @@
                 </div>
             </div>
             <p class="body-large reveal" style="text-align: center; margin-top: 64px; color: var(--gray-400);">
-                We're continuing to develop new types of thought-decoding models <br> which encompass language, intent, emotion and more. 
-            </p>
-            <p class="body-large reveal" style="text-align: center; margin-top: 64px; color: var(--gray-400);">
-                Our technologies are real and functioning research model <br> which are ready to scale.
+                Our technologies are real and functioning research models <br> which are ready to scale.
             </p>
             <div class="findout-button">
                 <a href="models.html" class="btn btn-primary">
@@ -1456,7 +1462,7 @@
                           <span class="spotlight-badge">Video Interview</span>
                           <h3 class="spotlight-title">IMPACT 2023 Exclusive</h3>
                           <p class="spotlight-description">
-                            CEO demonstrates E-Wave technology live. Since this interview, MindPortal has achieved multiple additional world-firsts including MindGPT and MindSpeech.
+                            In this interview, Ekram Alam, CEO of MindPortal, discusses the origins and vision of MindPortal. Since this interview, MindPortal achieved multiple additional world-firsts including MindGPT and MindSpeech.
                           </p>
                         </div>
                       </div>
@@ -1504,7 +1510,7 @@
                         <p style="font-style: italic; margin-bottom: 24px;">"The launch of MindSpeech, the result of MindPortal’s
                             groundbreaking AI research, marks the translation of free-form thought into text."</p>
                         <p style="font-weight: 600;">Professor Maysam Chamanzar</p>
-                        <p style="color: var(--gray-400); font-size: 14px;">Carnegie Mellon University</p>
+                        <p style="color: var(--gray-400); font-size: 14px;">Former Lead Scientist of DARPA N3 Neural Interface Program and Professor at Carnegie Mellon University</p>
                     </div>
                     <div class="reveal" style="text-align: center; padding: 40px; background: rgba(255, 255, 255, 0.02); border-radius: 24px;">
                         <p style="font-style: italic; margin-bottom: 24px;">"Previous efforts have been limited to decoding memorised
@@ -1512,15 +1518,21 @@
                             MindSpeech, is a significant advancement in human-AI
                             interaction, capturing the fluid nature of internal speech."</p>
                         <p style="font-weight: 600;">Professor Gabriele Gratton</p>
-                        <p style="color: var(--gray-400); font-size: 14px;">Illinois University</p>
+                        <p style="color: var(--gray-400); font-size: 14px;">Head of DARPA funded brain-imaging lab at University of Illinois</p>
                     </div>
                     <div class="reveal" style="text-align: center; padding: 40px; background: rgba(255, 255, 255, 0.02); border-radius: 24px;">
                         <p style="font-style: italic; margin-bottom: 24px;">"MindPortal’s AI research provides, for the first time, evidence that AI can decode continuous imagined
                             speech from the brain.”</p>
                         <p style="font-weight: 600;">Professor Hamid Dehghani</p>
-                        <p style="color: var(--gray-400); font-size: 14px;">Birmingham University</p>
+                        <p style="color: var(--gray-400); font-size: 14px;">Professor of Medical Imaging and expert in biomedical optics at University of Birmingham</p>
                     </div>
                 </div>
+                <div class="findout-button-press">
+                <a href="news.html" class="btn btn-primary">
+                    See MindPortal in the Press
+                    <span>→</span>
+                </a>
+            </div>
             </div>
         </div>
     </section>
