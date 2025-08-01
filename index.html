@@ -811,6 +811,21 @@
             opacity: 1;
         }
 
+        a.press-logo {
+            text-decoration: none;
+            color: inherit;
+            display: inline-block;
+        }
+
+        a.press-logo:hover {
+            opacity: 1;
+        }
+
+        /* Ensure the text under logos doesn't get underlined */
+        a.press-logo .press-logo-text {
+            text-decoration: none;
+        }
+
         /* Press Gallery Styles */
         .press-gallery-track {
             display: flex;
@@ -1187,6 +1202,47 @@
             }
         }
 
+          /* Desktop: Center the bottom two items */
+        @media (min-width: 769px) {
+            .backer-bottom-left {
+                grid-column: 2;
+            }
+            .backer-bottom-right {
+                grid-column: 3;
+            }
+        }
+
+        /* Tablet: 3 columns */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .backers-grid {
+                grid-template-columns: repeat(3, 1fr) !important;
+            }
+            .backer-bottom-left,
+            .backer-bottom-right {
+                grid-column: auto;
+            }
+        }
+
+        /* Mobile: 2 columns */
+        @media (max-width: 768px) {
+            .backers-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 24px !important;
+                padding: 0 24px;
+            }
+            .backer-bottom-left,
+            .backer-bottom-right {
+                grid-column: auto;
+            }
+        }
+
+        /* Very small mobile: 1 column */
+        @media (max-width: 480px) {
+            .backers-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -1393,47 +1449,49 @@
     <section class="section section-light">
         <div class="container">
             <div class="section-header reveal">
-                <h2 class="display-2">Our Technology has been<br> Showcased Globally</h2>
+                <h2 class="display-2">Recognition & Validation</h2>
             </div>
             <!-- Press Section -->
             <div class="press-section">
                 <h3 class="heading-1 reveal">Featured In</h3>
                 <div class="press-logos reveal">
-                    <div class="press-logo">
-                        <img
-                          src="https://logo.clearbit.com/forbes.com?size=80"
-                          alt="Forbes Logo">
+                    <!-- Forbes Logo with Link -->
+                    <a href="https://forbesjapan.com/articles/detail/60845" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="press-logo">
+                        <img src="https://logo.clearbit.com/forbes.com?size=80" alt="Forbes Logo">
                         <p class="press-logo-text">Forbes</p>
-                      </div>
-                  
-                      <div class="press-logo">
-                        <img
-                          src="https://logo.clearbit.com/thetimes.co.uk?size=80"
-                          alt="The Times Logo">
+                    </a>
+                    
+                    <!-- The Times Logo with Link -->
+                    <a href="https://www.thetimes.com/business-money/technology/article/muse-singer-matt-bellamy-backs-mind-reading-tech-from-mindportal-5br9t5cn9" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="press-logo">
+                        <img src="https://logo.clearbit.com/thetimes.co.uk?size=80" alt="The Times Logo">
                         <p class="press-logo-text">The Times</p>
-                      </div>
-                  
-                      <div class="press-logo">
-                        <img
-                          src="https://logo.clearbit.com/telegraph.co.uk?size=80"
-                          alt="The Telegraph Logo">
+                    </a>
+                    
+                    <!-- Telegraph Logo with Link -->
+                    <a href="https://www.telegraph.co.uk/technology/2021/05/23/muse-frontman-matt-bellamy-silicon-valley-investors-put-5m-brain/" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="press-logo">
+                        <img src="https://logo.clearbit.com/telegraph.co.uk?size=80" alt="The Telegraph Logo">
                         <p class="press-logo-text">Telegraph</p>
-                      </div>
-                  
-                      <div class="press-logo">
-                        <img
-                          src="https://logo.clearbit.com/businessinsider.com?size=80"
-                          alt="Business Insider Logo">
+                    </a>
+                    
+                    <!-- Business Insider Logo with Link -->
+                    <a href="https://www.businessinsider.com/silicon-valley-startups-are-getting-flooded-with-vc-funding-offers-2021-3" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="press-logo">
+                        <img src="https://logo.clearbit.com/businessinsider.com?size=80" alt="Business Insider Logo">
                         <p class="press-logo-text">Business Insider</p>
-                      </div>
-                  
-                      <!-- <div class="press-logo">
-                        <img
-                          src="https://logo.clearbit.com/unite.ai?size=80"
-                          alt="Unite.AI Logo">
-                        <p class="press-logo-text">Unite.AI</p>
-                      </div> -->
+                    </a>
                 </div>
+            </div>
 
                 
                 <!-- Featured Spotlights (updated) -->
@@ -1536,6 +1594,67 @@
             </div>
         </div>
     </section>
+
+    <div style="margin-top: 120px; padding-bottom: 80px;">
+        <h3 class="heading-1 reveal" style="text-align: center; margin-bottom: 64px; font-size: clamp(36px, 5vw, 48px);">Our Backers</h3>
+        <div class="backers-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; max-width: 1000px; margin: 0 auto;">
+            
+            <!-- Y Combinator -->
+            <div class="reveal backer-item" style="text-align: center;">
+                <div style="width: 120px; height: 120px; margin: 0 auto 16px; background: rgba(255, 255, 255, 0.05); border-radius: 16px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                    <img src="assets/yc.svg.png" alt="Y Combinator" style="max-width: 80%; max-height: 80%; object-fit: contain;">
+                </div>
+                <p style="font-weight: 600; font-size: 18px; margin-bottom: 8px;">Y Combinator</p>
+                <p style="color: var(--gray-400); font-size: 14px; line-height: 1.4;">World's most prestigious startup accelerator</p>
+            </div>
+
+            <!-- 7Percent Ventures -->
+            <div class="reveal backer-item" style="text-align: center;">
+                <div style="width: 120px; height: 120px; margin: 0 auto 16px; background: rgba(255, 255, 255, 0.05); border-radius: 16px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                    <img src="assets/7pcventures.jpg" alt="7Percent Ventures" style="max-width: 80%; max-height: 80%; object-fit: contain;">
+                </div>
+                <p style="font-weight: 600; font-size: 18px; margin-bottom: 8px;">7Percent Ventures</p>
+                <p style="color: var(--gray-400); font-size: 14px; line-height: 1.4;">Deep tech venture capital fund</p>
+            </div>
+
+            <!-- Learn Capital -->
+            <div class="reveal backer-item" style="text-align: center;">
+                <div style="width: 120px; height: 120px; margin: 0 auto 16px; background: rgba(255, 255, 255, 0.05); border-radius: 16px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                    <img src="assets/learn.webp" alt="Learn Capital" style="max-width: 80%; max-height: 80%; object-fit: contain;">
+                </div>
+                <p style="font-weight: 600; font-size: 18px; margin-bottom: 8px;">Learn Capital</p>
+                <p style="color: var(--gray-400); font-size: 14px; line-height: 1.4;">$1B+ venture fund focused on frontier innovation</p>
+            </div>
+
+            <!-- James Park -->
+            <div class="reveal backer-item" style="text-align: center;">
+                <div style="width: 120px; height: 120px; margin: 0 auto 16px; background: rgba(255, 255, 255, 0.05); border-radius: 16px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                    <img src="assets/jamespark.jpg" alt="James Park" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+                </div>
+                <p style="font-weight: 600; font-size: 18px; margin-bottom: 8px;">James Park</p>
+                <p style="color: var(--gray-400); font-size: 14px; line-height: 1.4;">Founder & Former CEO of Fitbit (acquired by Google for $2.1B)</p>
+            </div>
+
+            <!-- Julie Zhuo - Center Left -->
+            <div class="reveal backer-item backer-bottom-left" style="text-align: center;">
+                <div style="width: 120px; height: 120px; margin: 0 auto 16px; background: rgba(255, 255, 255, 0.05); border-radius: 16px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                    <img src="assets/juliezhuo.jpg" alt="Julie Zhuo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+                </div>
+                <p style="font-weight: 600; font-size: 18px; margin-bottom: 8px;">Julie Zhuo</p>
+                <p style="color: var(--gray-400); font-size: 14px; line-height: 1.4;">Former VP of Design at Facebook/Meta, Co-founder of Sundial</p>
+            </div>
+
+            <!-- Matt Bellamy - Center Right -->
+            <div class="reveal backer-item backer-bottom-right" style="text-align: center;">
+                <div style="width: 120px; height: 120px; margin: 0 auto 16px; background: rgba(255, 255, 255, 0.05); border-radius: 16px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                    <img src="assets/mattbellamy.png" alt="Matt Bellamy" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+                </div>
+                <p style="font-weight: 600; font-size: 18px; margin-bottom: 8px;">Matt Bellamy</p>
+                <p style="color: var(--gray-400); font-size: 14px; line-height: 1.4;">2x Grammy Award winning rockstar, Frontman of Muse</p>
+            </div>
+
+        </div>
+    </div>
 
     <!-- CTA Section -->
     <section class="cta-section">
