@@ -945,15 +945,146 @@
             opacity: 1;
             transform: scale(1);
         }
+
+
+        .mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--secondary);
+    font-size: 28px;
+    cursor: pointer;
+    padding: 8px;
+    position: relative;
+    z-index: 1001;
+}
+
+.mobile-menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--secondary);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Mobile Navigation Overlay */
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: flex !important; /* Override the display: none */
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.98);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        transition: right 0.3s ease;
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links a {
+        font-size: 24px;
+        opacity: 1;
+    }
+}
+
+/* Mobile dropdown handling */
+@media (max-width: 768px) {
+    /* Hide desktop dropdown behavior on mobile */
+    .dropdown:hover .dropdown-menu {
+        display: none !important;
+    }
+    
+    /* Style the dropdown for mobile */
+    .dropdown-menu {
+        position: static;
+        transform: none;
+        padding-top: 0;
+        display: block;
+        margin-top: 16px;
+        margin-left: 32px;
+    }
+    
+    .dropdown-menu a {
+        background: rgba(255, 255, 255, 0.05);
+        font-size: 20px;
+        padding: 16px 32px;
+        border-radius: 0;
+    }
+    
+    .dropdown-menu a:first-child {
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
+    
+    .dropdown-menu a:last-child {
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+    }
+}
+
+/* Additional mobile fixes for models page */
+@media (max-width: 768px) {
+    .demo-container {
+        padding: 32px 24px;
+    }
+    
+    .demo-visual {
+        height: 250px;
+    }
+    
+    .impact-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .comparison-table {
+        overflow-x: auto;
+    }
+    
+    .table-header,
+    .table-row {
+        min-width: 600px;
+    }
+}
     </style>
 
 </head>
 <body>
     <!-- Navigation -->
-   <nav>
+<nav id="navbar">
     <div class="nav-container">
         <div class="logo">MindPortal</div>
-        <ul class="nav-links">
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
             <li><a href="mission.html">Mission</a></li>
             <li class="dropdown">
@@ -1406,6 +1537,35 @@
             }
         });
     });
+
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+const navLinks = document.getElementById('navLinks');
+
+if (mobileMenuToggle && navLinks) {
+    mobileMenuToggle.addEventListener('click', () => {
+        mobileMenuToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            // Don't close if it's a dropdown parent link on desktop
+            if (window.innerWidth <= 768 || !link.parentElement.classList.contains('dropdown')) {
+                mobileMenuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('nav') && navLinks.classList.contains('active')) {
+            mobileMenuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+        }
+    });
+}
     </script>
 </body>
 </html>
