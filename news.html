@@ -705,6 +705,56 @@
         opacity: 1;
     }
 }
+
+
+
+@media (max-width: 768px) {
+    /* Convert showcase gallery to column layout */
+    .recognition-gallery .gallery-track {
+        animation: none !important; /* Stop animation */
+        flex-direction: column;
+        gap: 24px;
+    }
+    
+    .gallery-item {
+        min-width: 100% !important;
+        width: 100% !important;
+    }
+    
+    /* Convert press scroll to column layout */
+    .press-scroll-track {
+        animation: none !important; /* Stop animation */
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 20px;
+    }
+    
+    .press-scroll-card {
+        min-width: 100% !important;
+        width: 100% !important;
+    }
+    
+    /* Hide gradient fade edges on mobile */
+    .press-scroll-container::before,
+    .press-scroll-container::after {
+        display: none;
+    }
+    
+    /* Remove hover pause since no animation */
+    .press-scroll-track:hover {
+        animation-play-state: running !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-content {
+        padding: 24px 16px;
+    }
+    
+    .press-scroll-card {
+        padding: 24px 20px;
+    }
+}
     </style>
 </head>
 <body>

@@ -694,6 +694,36 @@
         opacity: 1;
     }
 }
+
+@media (max-width: 768px) {
+    /* Change stats bar to single column on mobile */
+    .stats-bar {
+        grid-template-columns: 1fr !important; /* Single column */
+        gap: 20px;
+    }
+    
+    /* Hide the neurons image on mobile */
+    .ip-visual {
+        display: none !important;
+    }
+    
+    /* Make IP visualization single column on mobile */
+    .ip-visualization {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Center the IP content on mobile since image is hidden */
+    .ip-content {
+        max-width: 100%;
+        margin: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .stat-item {
+        padding: 24px 16px;
+    }
+}
     </style>
 
 </head>

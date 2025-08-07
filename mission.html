@@ -562,6 +562,40 @@
     }
 }
 
+@media (max-width: 768px) {
+    /* Reduce padding on timeline content boxes */
+    .timeline-content {
+        padding: 24px 20px; /* Reduced from 48px */
+    }
+    
+    /* Adjust timeline title size to prevent cutoff */
+    .timeline-title {
+        font-size: 24px; /* Reduced from 36px */
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    /* Ensure timeline description fits */
+    .timeline-description {
+        font-size: 16px;
+    }
+    
+    /* Adjust timeline visual height */
+    .timeline-visual {
+        height: 200px; /* Reduced from 300px */
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline-content {
+        padding: 20px 16px;
+    }
+    
+    .timeline-title {
+        font-size: 20px;
+    }
+}
+
 
     </style>
 </head>
