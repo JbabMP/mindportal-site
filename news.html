@@ -708,7 +708,7 @@
 
 
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
     /* Convert showcase gallery to column layout */
     .recognition-gallery .gallery-track {
         animation: none !important; /* Stop animation */
@@ -753,6 +753,19 @@
     
     .press-scroll-card {
         padding: 24px 20px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    /* Hide duplicate items in the press scroll track */
+    .press-scroll-track a:nth-child(n+11) {
+        display: none !important;
+    }
+    
+    /* For the gallery track, hide items after the 5th one (since 6th is the duplicate) */
+    .gallery-track .gallery-item:nth-child(n+6) {
+        display: none !important;
     }
 }
     </style>
